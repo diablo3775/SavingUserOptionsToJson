@@ -1,0 +1,39 @@
+<form>
+  <div class="formBox">
+      <label for="title">Movie</label>
+    <input type="text" id="title" />
+  </div>
+  <div class="formBox">
+      <label for="yr">Year</label>
+    <input type="text" id="yr" />
+  </div>
+  <div class="formBox">
+    <button id="btn">click to add</button>
+  </div>
+  <div id="msg">
+    <pre></pre>
+  </div>
+</form>
+<script>
+  let movies = [];
+  const addMovie = (ev) => {
+    ev.preventDefault();
+    let movie = {
+      id: Date.now(),
+      title: document.getElementById("title").value,
+      year: document.getElementById("yr").value,
+    };
+
+    movies.push(movie);
+    document.forms[0].reset();
+
+  console.warn("added", { movies });
+  let pre = document.querySelector("#msg pre");
+  pre.textContent = "\n" + JSON.stringify(movies, "\t", 2);
+
+//   localStorage.setItem("MyMovieList", JSON.stringify(jsondata));
+}
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("btn").addEventListener("click", addMovie);
+  });
+</script>
